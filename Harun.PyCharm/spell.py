@@ -12,7 +12,6 @@ from collections import Counter
 def words(text): return re.findall(r'\w+', text.lower())
 
 
-# WORDS = Counter(words(open('big.txt').read()))
 WORDS = Counter(words(open('corpus.txt').read()))
 
 
@@ -26,9 +25,21 @@ def correction(word):
     return max(candidates(word), key=P)
 
 
+def correction_enhanced(word):
+    "Most probable spelling correction for word."
+    return max(candidates_enhanced(word), key=P)
+
+
 def candidates(word): 
     "Generate possible spelling corrections for word."
-    return (known([word]) or known(edits1(word)) or known(edits2(word)) or [word])
+    # return (known([word]) or known(edits1(word)) or known(edits2(word)) or [word])
+    return (known([word]) or known(edits1(word)) or [word])
+
+
+def candidates_enhanced(word):
+    "Generate possible spelling corrections for word."
+    # return (known([word]) or known(edits1(word)) or known(edits2(word)) or [word])
+    return (known([word]) or known(edits1_enhanced(word)) or [word])
 
 
 def known(words): 
@@ -47,51 +58,35 @@ def edits1(word):
     return set(deletes + transposes + replaces + inserts)
 
 
-def edits2(word): 
-    "All edits that are two edits away from `word`."
-    return (e2 for e1 in edits1(word) for e2 in edits1(e1))
+def edits1_enhanced(word):
+    "All edits that are one edit away from `word`."
+    letters    = 'abcdefghijklmnopqrstuvwxyz'
+    splits     = [(word[:i], word[i:])    for i in range(len(word) + 1)]
+    deletes    = [L + R[1:]               for L, R in splits if R]
+    transposes = [L + R[1] + R[0] + R[2:] for L, R in splits if len(R)>1]
+    replaces   = [L + c + R[1:]           for L, R in splits if R for c in letters]
+    inserts    = [L + c + R               for L, R in splits for c in letters]
 
+    total = deletes + transposes + replaces + inserts
+    # print("type(total) :", type(total)) -> list
 
-#  ############### Test Code
+    total_list_enhanced = []
 
+    start_letter = word[0]
 
-def spelltest(tests, verbose=False):
-    "Run correction(wrong) on all (right, wrong) pairs; report results."
-    import time
-    # start = time.clock()
-    start = time.perf_counter()
-    good, unknown = 0, 0
-    n = len(tests)
-    for right, wrong in tests:
-        w = correction(wrong)
-        good += (w == right)
-        if w != right:
-            unknown += (right not in WORDS)
-            if verbose:
-                print('correction({}) => {} ({}); expected {} ({})'
-                      .format(wrong, w, WORDS[w], right, WORDS[right]))
-    # dt = time.clock() - start
-    dt = time.perf_counter() - start
-    print('{:.0%} of {} correct ({:.0%} unknown) at {:.0f} words per second '
-          .format(good / n, n, unknown / n, n / dt))
+    for line in total:
+        if line[0] != start_letter:
+            continue
+        total_list_enhanced.append(line)
 
-
-def Testset(lines):
-    "Parse 'right: wrong1 wrong2' lines into [('right', 'wrong1'), ('right', 'wrong2')] pairs."
-    return [(right, wrong)
-            for (right, wrongs) in (line.split(':') for line in lines)
-            for wrong in wrongs.split()]
+    return set(total_list_enhanced)
 
 
 if __name__ == '__main__':
     print("merhaba")
-    # print(unit_tests())
-    # spelltest(Testset(open('spell-testset1.txt')))
-    # spelltest(Testset(open('spell-testset2.txt')))
 
 
-# use instead of time.clock() depreated :
+# use instead of time.clock() deprecated :
 # time.perf_counter()
 # or
 # time.process_time()
-

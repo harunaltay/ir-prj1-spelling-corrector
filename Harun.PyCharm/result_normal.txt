@@ -1,0 +1,113 @@
+The comparison result of normal algorithm (no enhancement)
+
+total number of misspelled words: 384
+
+number_of_empty_guess: 74
+number_of_wrong_guess: 29
+total_not_correctly_guessed: 103
+correct_guessed: 281
+correct_percent: 0.7317708333333334
+
+ - achieved
+ - ambiguity
+ - assignments
+ - asynchronously
+amiable - available
+borrow - borrower
+ - broadcasting
+ - bulletins
+ - capabilities
+ - cataloguing
+ - cataloguing
+ - cataloguing
+ - characterising
+casting - citing
+ - coefficient
+ - coefficient
+ - coefficient
+ - commercially
+complying - completing
+ - complimentary
+ - connectives
+ - conventional
+ - cordoning
+ - criticised
+ - decreasing
+definite - deficit
+ - despatched
+details - detail
+ - diagrammatically
+one - done
+ - downstream
+ - equalisation
+ - exemplified
+ - facilitated
+felt - field
+firmly - firstly
+ - foreseeable
+father - further
+ - handbook
+ - heuristics
+ - however
+ - impracticable
+ - inappropriate
+ - incremented
+ - individual
+ - inefficient
+ - install
+ - internationally
+ - internecine
+them - item
+vernal - kernel
+lise - liaise
+right - light
+its - list
+ - listings
+ - loaned
+ - logarithm
+ - manageable
+ - manipulation
+ - means
+ - megabytes
+not - most
+ - negatively
+ - networks
+commissions - omissions
+ - opposed
+organisation - organisations
+ - overfill
+ - oxygen
+ - peripheral
+ - permanently
+panic - picnic
+prices - pieces
+potential - potentially
+ - priorities
+ - probably
+pressing - processing
+ - pronouncements
+ - proportionality
+proved - provide
+ranks - ranked
+ - redecoration
+ - registries
+ - repetitious
+rising - resting
+scared - scanned
+ - semaphore
+ - similarity
+similarly - similarity
+ - sizeable
+ - starter
+ - statements
+ - substructures
+ - succesor
+ - synchronise
+ - techniques
+the - there
+ - theses
+ - tolerance
+ - uncritical
+necessary - unnecessary
+ - unscramble
+ - versatility

@@ -5,7 +5,7 @@ import sys
 import time
 
 
-def process_a_file():
+def process_a_file_enhanced():
     argument_vector = sys.argv
     if len(argument_vector) != 3:
         print("usage: python spell_corrector corpus.txt test_words_misspelled.txt")
@@ -19,7 +19,7 @@ def process_a_file():
 
     for line in file_misspelled:
         misspelled_word = line.strip()
-        guessed_word = correction(misspelled_word)
+        guessed_word = correction_enhanced(misspelled_word)
         if guessed_word == misspelled_word:
             guessed_string += "\n"
             continue
@@ -31,7 +31,7 @@ def process_a_file():
 
     # print(guessed_string)
 
-    f = open("output_spell_corrector.txt", "w")
+    f = open("output_spell_corrector_enhanced.txt", "w")
     f.write(guessed_string)
     f.close()
 
@@ -39,4 +39,4 @@ def process_a_file():
 
 
 if __name__ == '__main__':
-    process_a_file()
+    process_a_file_enhanced()
